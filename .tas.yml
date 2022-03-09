@@ -9,8 +9,8 @@ preRun:
     - cd
     - pwd
     - export CODENAME="lsb_release -cs"
-    - su -c  apt-get update
-    - su -c  apt-get install rethinkdb
+    - apt-get update
+    - apt-get install rethinkdb
     - rethinkdb --bind all &
     - cd /home/nucleus/repo
     - yarn
