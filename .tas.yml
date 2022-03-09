@@ -8,16 +8,11 @@ preRun:
     - pwd
     - cd
     - pwd
-    - su -
-    - 
-    - apt update
-    - apt install sudo -y
-    - exit
     - export CODENAME=`lsb_release -cs`
-    - echo "deb https://download.rethinkdb.com/repository/debian-$CODENAME $CODENAME main" | sudo tee /etc/apt/sources.list.d/rethinkdb.list
-    - wget -qO- https://download.rethinkdb.com/repository/raw/pubkey.gpg | sudo apt-key add -
-    - sudo apt-get update
-    - sudo apt-get install rethinkdb
+    - echo "deb https://download.rethinkdb.com/repository/debian-$CODENAME $CODENAME main" | su -c  tee /etc/apt/sources.list.d/rethinkdb.list
+    - wget -qO- https://download.rethinkdb.com/repository/raw/pubkey.gpg | su -c  apt-key add -
+    - su -c  apt-get update
+    - su -c  apt-get install rethinkdb
     - rethinkdb --bind all &
     - cd /home/nucleus/repo
     - yarn
