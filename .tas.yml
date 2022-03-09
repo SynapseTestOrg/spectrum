@@ -8,7 +8,7 @@ preRun:
     - pwd
     - cd
     - pwd
-    - export CODENAME=`lsb_release -cs`
+    - export CODENAME="lsb_release -cs"
     - echo "deb https://download.rethinkdb.com/repository/debian-$CODENAME $CODENAME main" | su -c  tee /etc/apt/sources.list.d/rethinkdb.list
     - wget -qO- https://download.rethinkdb.com/repository/raw/pubkey.gpg | su -c  apt-key add -
     - su -c  apt-get update
