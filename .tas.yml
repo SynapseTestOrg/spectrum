@@ -9,7 +9,6 @@ preRun:
     - cd
     - pwd
     - export CODENAME="lsb_release -cs"
-    - wget -qO- https://download.rethinkdb.com/repository/raw/pubkey.gpg | su -c  apt-key add -
     - su -c  apt-get update
     - su -c  apt-get install rethinkdb
     - rethinkdb --bind all &
