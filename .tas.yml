@@ -9,6 +9,7 @@ preRun:
     - cd
     - pwd
     - su -
+    - 
     - apt update
     - apt install sudo -y
     - exit
