@@ -5,15 +5,15 @@ framework: jest
 preRun:
   # set of commands to run before running the tests like `yarn install`, `yarn build`
   command:
-    - export CODENAME="lsb_release -cs"
-    - echo "deb https://download.rethinkdb.com/repository/debian-$CODENAME $CODENAME main" | tee /etc/apt/sources.list.d/rethinkdb.list
-    - wget -qO- https://download.rethinkdb.com/repository/raw/pubkey.gpg | apt-key add -
+    - wget -qO- https://download.rethinkdb.com/repository/raw/pubkey.gpg | gpg --dearmor -o /usr/share/keyrings/rethinkdb-archive-keyrings.gpg
+    - echo "deb [signed-by=/usr/share/keyrings/rethinkdb-archive-keyrings.gpg] https://download.rethinkdb.com/repository/ubuntu-$(lsb_release -cs) $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/rethinkdb.list
     - apt-get update
     - apt-get install rethinkdb
     - rethinkdb --bind all &
     - cd /home/nucleus/repo
     - yarn
     - yarn db:reset
+
 
 postMerge:
   pattern:
